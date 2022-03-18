@@ -26,13 +26,24 @@ public class AddressBook {
         contact.setZip(sc.next());
     }
 
-    public void displayContact() {
+    public void displayContact()
+    {
         System.out.println(contact.toString());
     }
 
     public static void main(String[] args) {
-        AddressBook addressBook = new AddressBook();
-        addressBook.addContact();
-        addressBook.displayContact();
+        System.out.println("Enter The List of Contacts : ");
+        int list_of_Contact;
+        Scanner sc = new Scanner(System.in);
+        list_of_Contact = sc.nextInt();
+        AddressBook[] addressBook = new AddressBook[list_of_Contact];
+
+        for (int i=0; i < list_of_Contact; i++) {
+            addressBook[i] = new AddressBook();
+            addressBook[i].addContact();
+        }
+        for (int i =0; i < list_of_Contact; i++) {
+            addressBook[i].displayContact();
+        }
     }
 }

@@ -36,28 +36,28 @@ public class Contact {
     }
 
     public String getFirstName() {
-        return firstName;
+        return this.firstName;
     }
     public String getLastName() {
-        return lastName;
+        return this.lastName;
     }
     public String getAddress() {
-        return address;
+        return this.address;
     }
     public String getCity() {
-        return city;
+        return this.city;
     }
     public String getState() {
-        return state;
+        return this.state;
     }
     public String getMobno() {
-        return mobno;
+        return this.mobno;
     }
     public String getEmail() {
-        return email;
+        return this.email;
     }
     public String getZip() {
-        return zip;
+        return this.zip;
     }
 
     @Override
