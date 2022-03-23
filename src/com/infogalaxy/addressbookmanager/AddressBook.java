@@ -1,13 +1,15 @@
 package com.infogalaxy.addressbookmanager;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AddressBook {
 
+    ArrayList<Contact> contactList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
-    Contact contact = new Contact();
 
     public void addContact() {
+        Contact contact = new Contact();
         System.out.println("Enter The First Name : ");
         contact.setFirstName(sc.next());
         System.out.println("Enter The Last Name : ");
@@ -24,26 +26,34 @@ public class AddressBook {
         contact.setEmail(sc.next());
         System.out.println("Enter The Zip Code : ");
         contact.setZip(sc.next());
+        contactList.add(contact);
     }
 
     public void displayContact()
     {
-        System.out.println(contact.toString());
+        for (int i = 0; i < contactList.size(); i++) {
+            Contact contact = contactList.get(i);
+            System.out.println(contact.toString());
+        }
     }
-
     public static void main(String[] args) {
-        System.out.println("Enter The List of Contacts : ");
-        int list_of_Contact;
         Scanner sc = new Scanner(System.in);
-        list_of_Contact = sc.nextInt();
-        AddressBook[] addressBook = new AddressBook[list_of_Contact];
+        AddressBook addressBook = new AddressBook();
+        int choice;
+      do {
+          System.out.println(" CONTACT LIST MANAGEMENT ");
+          System.out.println("\n1. ADD CONTACT \n2. DISPLAY CONTACT \n3. EXIT");
+          System.out.println("Enter Your Choice : ");
+          choice = sc.nextInt();
+          switch (choice) {
+              case 1:
+                  addressBook.addContact();
+                  break;
+              case 2:
+                  addressBook.displayContact();
+                  break;
+          }
+      }while (choice !=3);
 
-        for (int i=0; i < list_of_Contact; i++) {
-            addressBook[i] = new AddressBook();
-            addressBook[i].addContact();
-        }
-        for (int i =0; i < list_of_Contact; i++) {
-            addressBook[i].displayContact();
-        }
     }
 }
