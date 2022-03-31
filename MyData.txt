@@ -1,0 +1,4 @@
+bharat,bhalkare,lonkheda,shahada,mh,7587123612,bharat@gmail.com,425413
+uja,patil,nagaon,nandurbaar,gj,254567843,u@gmail.com,245412
+ujwala,dhangar,nagaon,nandurbar,mh,2548756546,uja@mail.com,425412
+null
