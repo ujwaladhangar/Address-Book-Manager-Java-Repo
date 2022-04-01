@@ -1,5 +1,8 @@
 package com.infogalaxy.addressbookmanager;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -11,6 +14,7 @@ public class AddressBook {
 
     ArrayList<Contact> contactList = new ArrayList<>();
     Scanner sc = new Scanner(System.in);
+
 
     public void addcontact() {
         Contact contact = new Contact();
@@ -118,13 +122,41 @@ public class AddressBook {
         }
     }
 
+    public void restoreFromFile() {
+        try {
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("MyData.txt"));
+            String data;
+            while ((data = bufferedReader.readLine()) != null && !data.equalsIgnoreCase("null")) {
+
+                //System.out.println(data);
+                String[] separetData = data.split(",");
+                Contact contact = new Contact();
+                System.out.println("\nFirst Name : " + separetData[0]);
+                System.out.println("Last Name : " + separetData[1]);
+                System.out.println("Address : " + separetData[2]);
+                System.out.println("City = : + " + separetData[3]);
+                System.out.println("State : " + separetData[4]);
+                System.out.println("Mob No : " + separetData[5]);
+                System.out.println("Email : " + separetData[6]);
+                System.out.println("Zip Code : " + separetData[7]);
+                contactList.add(contact);
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         AddressBook addressBook = new AddressBook();
         int choice;
         do {
             System.out.println(" **** CONTACT LIST MANAGEMENT **** ");
-            System.out.println("\n1. ADD CONTACT \n2. DISPLAY CONTACT \n3. EDIT CONTACT \n4. SEARCH STATE \n5. DELETE CONTACT \n6. BACKUP TO FILE \n7. EXIT ");
+            System.out.println("\n1. ADD CONTACT \n2. DISPLAY CONTACT \n3. EDIT CONTACT \n4. SEARCH STATE \n5. DELETE CONTACT \n6. BACKUP TO FILE \n7. RESTORE CONTACT FROM FILE \n8. EXIT ");
             System.out.println("Enter Your Choice : ");
             choice = sc.nextInt();
             switch (choice) {
@@ -146,8 +178,11 @@ public class AddressBook {
                 case 6:
                     addressBook.backupToFile();
                     break;
+                case 7:
+                    addressBook.restoreFromFile();
+                    break;
             }
 
-        } while (choice != 7);
+        } while (choice != 8);
     }
 }
